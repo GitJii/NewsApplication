@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>NewsApplication</title>
+        <meta charset="UTF-8"/>       
+    </head>
+    <body>
+
+        <h2>News</h2>
+
+        <p th:each="news : ${listOfNews}">
+            <span th:text="${news.name}">ingressi</span>
+            <span th:text="${news.kuva}">kuva</span>
+        </p>
+
+        <h2> Add a new news</h2>
+
+        <form method="POST" th:action="@{/}">
+            <span>Name:</span>
+            <input type="text" name="ingressi"/>
+            <span>Kuva:</span>
+            <input type="text" name="kuva"/>
+            <input type="submit" value="Add"/>
+        </form>
+
+    </body>
+
+</html>
