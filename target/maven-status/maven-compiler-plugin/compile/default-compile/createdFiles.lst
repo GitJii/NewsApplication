@@ -1,4 +1,0 @@
-wad\controller\NewsController.class
-wad\domain\News.class
-wad\NewsApplication.class
-wad\repository\NewsRepository.class
