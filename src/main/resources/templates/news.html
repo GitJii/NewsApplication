@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>News</title>
+    </head>
+    <body>
+        <h1>News</h1>
+
+        <h2>Add new news</h2>
+
+        <div>
+            Enter information and press Submit:<br/>
+            <form th:action="@{/news}" method="POST">
+                Name: <input type="text" name="name" id="name"/><br/>
+                Category: <input type="text" name="category" id="category"/><br/>
+                <input type="submit"/>            
+            </form>
+        </div>
+
+        <h2>Current newss</h2>
+
+        <ol>
+            <li th:each="news : ${listOfNews}">
+                <span th:text="${news.category}">News category</span>
+
+                <div th:if="${news.writer} == null">
+                    -- No writer. Add writer to:<br/>
+                    <form th:action="@{/news/{newsId}/writers(newsId=${news.id})}" method="POST">
+                        <select name="writerId">
+                            <option th:each="writer : ${writers}" th:value="${writer.id}" th:text="${writer.name}"></option>
+                        </select>
+                        <input type="submit" value="Add writer"/>
+                    </form>
+                </div>
+
+                <span th:if="${news.writer} != null">
+                    at <span th:text="${news.writer.name}">writer</span>
+                </span>
+            </li>
+        </ol>
+
+        <p><a th:href="@{/writers}">Writerss</a></p>
+    </body>
+
+</html>
